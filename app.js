@@ -70,7 +70,7 @@ app.post('/agregar', async (req, res) => {
             producto: req.body.producto,
             marca: req.body.marca,
             cantidad: req.body.cantidad,
-            //creador_id: req.session.usuario_id
+            //creador_id: req.session.usuario_id PREGUNTAR
         });
     res.redirect('/listaProductos');
 });
