@@ -1,0 +1,17 @@
+<h2>Alta de productos</h2>
+
+<form method="post" href="/listaProductos" class="form-group">
+    <div class="form-group">
+        <label for="producto">Producto:</label>
+        <input type="text" class="form-control" name="producto" id="producto" value="{{datos.producto}}">
+    </div>
+    <div class="form-group">
+        <label for="marca">Marca:</label>
+        <input type="text" class="form-control" name="marca" id="marca" value="{{datos.marca}}">
+    </div>
+    <div class="form-group">
+        <label for="cantidad">Cantidad:</label>
+        <input type="text" class="form-control" name="cantidad" id="cantidad" value="{{datos.cantidad}}">
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
