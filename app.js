@@ -1,3 +1,4 @@
+// PROBLEMAS EN LINEA 74 Y 122
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -7,6 +8,7 @@ const bcrypt = require('bcrypt');
 const validaciones = require('./validaciones');
 const rutasHola = require('./rutas-hola');
 //const { Router } = require('express');
+
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -70,7 +72,7 @@ app.post('/agregar', async (req, res) => {
             producto: req.body.producto,
             marca: req.body.marca,
             cantidad: req.body.cantidad,
-            //creador_id: req.session.usuario_id PREGUNTAR
+            creador: req.session.usuario_id
         });
     res.redirect('/listaProductos');
 });
@@ -117,7 +119,7 @@ app.put('/api/ListasProductos/:id', async(req, res) => {
 });
 // -----------FIN DE LAS APIS -----------
 app.get('/ListaProductos', async (req, res) => {
-    const listadoA = await ListaProductosModel.find({creador_id: req.session.usuario_id}).lean();
+    const listadoA = await ListaProductosModel.find({creador: req.session.usuario_id}).lean();
     if(!req.session.usuario_ok) {
         res.redirect('/signin');
         return;
@@ -216,7 +218,8 @@ app.post('/signup', async (req, res) => {
 app.get('/index', (req, res) => {
     res.render('index');
 })
+const port = process.env.PORT ? process.env.PORT : 3000;
 
-app.listen(3000, () => {
-    console.log("app corriendo en el puerto 3000");
+app.listen(port, () => {
+    console.log("app conected to http://localhost:" + port);
 });
