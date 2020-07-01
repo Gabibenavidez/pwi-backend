@@ -173,7 +173,7 @@ app.post('/signin', async function(req, res) {
             // usuario y password correcto
             req.session.usuario_ok = true;
             req.session.email = req.body.email;
-            req.session.user_id = req.session.usuario_id; 
+            req.session.user_id = usuario._id; 
             res.render('Pagina_usuario');
         } else {
             // La contraseña no coincide
