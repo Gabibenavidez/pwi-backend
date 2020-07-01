@@ -72,7 +72,7 @@ app.post('/agregar', async (req, res) => {
             producto: req.body.producto,
             marca: req.body.marca,
             cantidad: req.body.cantidad,
-            creador: req.session.usuario_id
+            creador: req.session.user_id
         });
     res.redirect('/listaProductos');
 });
@@ -119,7 +119,7 @@ app.put('/api/ListasProductos/:id', async(req, res) => {
 });
 // -----------FIN DE LAS APIS -----------
 app.get('/ListaProductos', async (req, res) => {
-    const listadoA = await ListaProductosModel.find({creador: req.session.usuario_id}).lean();
+    const listadoA = await ListaProductosModel.find({creador: req.session.user_id}).lean();
     if(!req.session.usuario_ok) {
         res.redirect('/signin');
         return;
@@ -173,7 +173,7 @@ app.post('/signin', async function(req, res) {
             // usuario y password correcto
             req.session.usuario_ok = true;
             req.session.email = req.body.email;
-            req.session.user_id = usuario._id; 
+            req.session.user_id = usuario_id; 
             res.render('Pagina_usuario');
         } else {
             // La contraseña no coincide
