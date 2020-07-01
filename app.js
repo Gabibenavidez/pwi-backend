@@ -99,7 +99,7 @@ app.post('/api/ListasProductos', async (req, res) => {
         producto: req.body.producto,
         marca: req.body.marca,
         cantidad: req.body.cantidad,
-        creador: req.body.usuario_id
+        creador: req.body.user_id
     });
     res.status(201).send(productoAgregado);
 });
@@ -173,7 +173,7 @@ app.post('/signin', async function(req, res) {
             // usuario y password correcto
             req.session.usuario_ok = true;
             req.session.email = req.body.email;
-            req.session.user_id = usuario_id; 
+            req.session.user_id = req.session.usuario_id; 
             res.render('Pagina_usuario');
         } else {
             // La contraseña no coincide
